@@ -2,15 +2,19 @@ package main
 
 import rl "vendor:raylib"
 
+import "player"
+import "setup"
+
 _ready :: proc() {
-    player_ready()
+    player._ready()
 }
 
 _update :: proc(delta: f32) {
-    player_update(delta)
+    player._update(delta)
 }
 
 main :: proc() {
+    using setup
     rl.InitWindow(WIDTH, HEIGHT, TITLE)
     defer rl.CloseWindow()
 
@@ -23,6 +27,6 @@ main :: proc() {
 
         _update(delta)
 
-        rl.ClearBackground(rl.BLACK)
+        rl.ClearBackground(rl.WHITE)
     }
 }
