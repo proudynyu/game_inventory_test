@@ -4,7 +4,10 @@ import rl "vendor:raylib"
 
 import "../item"
 
-MAX_INVENTORY_SLOTS :: 10
+CELL_PADDING: f32 = 2
+MAX_COLUMNS: f32 = 5
+MAX_ROWS: f32 = 4
+MAX_INVENTORY_SLOTS:: 20
 
 Inventory :: struct {
     slots: [MAX_INVENTORY_SLOTS]Slot,
@@ -14,14 +17,6 @@ Inventory :: struct {
 inventory: Inventory = {}
 
 create_inventory :: proc() {
-    create_slots_in_inventory(&inventory, MAX_INVENTORY_SLOTS)
-}
-
-show_inventory :: proc() {
-    if !player.inventory_open {
-        return
-    }
-
     screen_width := rl.GetScreenWidth()
     screen_height := rl.GetScreenHeight()
 
@@ -34,6 +29,20 @@ show_inventory :: proc() {
         width = cast(f32)inventory_width,
         height = cast(f32)inventory_heigth
     }
+    create_slots_in_inventory(&inventory, MAX_INVENTORY_SLOTS)
+}
+
+show_inventory :: proc() {
+    if !player.inventory_open {
+        return
+    }
     rl.DrawRectangleRec(inventory.rect, rl.GRAY)
+    draw_slots(&inventory)
+}
+
+draw_slots :: proc(inventory: ^Inventory) {
+    for slot in inventory.slots {
+        rl.DrawRectangleRec(slot.position, rl.LIGHTGRAY)
+    }
 }
 

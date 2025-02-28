@@ -1,6 +1,5 @@
 package player
 
-import "core:fmt"
 import rl "vendor:raylib"
 
 import "../setup"
