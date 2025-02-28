@@ -29,13 +29,13 @@ dir: Dir = {
 move :: proc(_delta: f32) {
     using setup
     if rl.IsKeyPressed(rl.KeyboardKey.W) {
-        player.position = player.position - (dir.up * SPEED * _delta) 
+        player.position = player.position - (dir.up * SPEED ) 
     } else if rl.IsKeyPressed(rl.KeyboardKey.D) {
-        player.position = player.position + (dir.right * SPEED * _delta)
+        player.position = player.position + (dir.right * SPEED)
     } else if rl.IsKeyPressed(rl.KeyboardKey.S) {
-        player.position = player.position - (dir.down * SPEED * _delta)
+        player.position = player.position - (dir.down * SPEED)
     } else if rl.IsKeyPressed(rl.KeyboardKey.A) {
-        player.position = player.position + (dir.left * SPEED * _delta)
+        player.position = player.position + (dir.left * SPEED)
     }
 
     player.body.x = player.position.x

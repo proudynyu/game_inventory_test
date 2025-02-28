@@ -6,8 +6,8 @@ import "../item"
 
 CELL_PADDING: f32 = 2
 MAX_COLUMNS: f32 = 5
-MAX_ROWS: f32 = 4
-MAX_INVENTORY_SLOTS:: 20
+MAX_ROWS: f32 = 6
+MAX_INVENTORY_SLOTS:: 30
 
 Inventory :: struct {
     slots: [MAX_INVENTORY_SLOTS]Slot,
