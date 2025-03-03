@@ -1,16 +1,21 @@
 package main
 
+import "core:fmt"
+import "core:bytes"
 import rl "vendor:raylib"
 import rlgl "vendor:raylib/rlgl"
 
 import "player"
 import "setup"
+import "item"
 
 _ready :: proc() {
+    item._ready()
     player._ready()
 }
 
 _update :: proc(delta: f32) {
+    item._update()
     player._update(delta)
 }
 
