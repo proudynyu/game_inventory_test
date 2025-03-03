@@ -10,13 +10,15 @@ import "setup"
 import "item"
 
 _ready :: proc() {
-    item._ready()
+    item.item_ready()
     player._ready()
+    item.hand_ready()
 }
 
 _update :: proc(delta: f32) {
-    item._update()
+    item.item_update()
     player._update(delta)
+    item.hand_update()
 }
 
 draw_bg_grid :: proc() {
