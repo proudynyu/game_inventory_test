@@ -3,6 +3,8 @@ package item
 import "core:fmt"
 import rl "vendor:raylib"
 
+import player "../player"
+
 Item :: struct {
     id: int,
     name: string,
@@ -69,22 +71,28 @@ item_update :: proc() {
 }
 
 hand_get_item :: proc(current_item: ^Item) {
-    if (hand.item == nil) {
+    if hand.item == nil {
         hand.item = current_item
     }
 }
 
+hand_drop_item :: proc(mouse_position: rl.Vector2, inventory: ^player.Inventory) {
+        if player.inventory_open {
+        }
+        hand.item.is_picked = false
+        hand.item = nil
+}
+
 hand_draw :: proc() {
-    mouse_position := rl.GetMousePosition()
     if hand.item != nil {
+        mouse_position := rl.GetMousePosition()
         hand.item.position.x = mouse_position.x
         hand.item.position.y = mouse_position.y
         draw_item(hand.item)
-    }
 
-    if rl.IsMouseButtonReleased(.LEFT) && hand.item != nil {
-        hand.item.is_picked = false
-        hand.item = nil
+        if rl.IsMouseButtonDown(.RIGHT) {
+            hand_drop_item(mouse_position)
+        }
     }
 }
 
