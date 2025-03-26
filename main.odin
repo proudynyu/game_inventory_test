@@ -7,18 +7,13 @@ import rlgl "vendor:raylib/rlgl"
 
 import "player"
 import "setup"
-import "item"
 
 _ready :: proc() {
-    item.item_ready()
     player._ready()
-    item.hand_ready()
 }
 
 _update :: proc(delta: f32) {
-    item.item_update()
     player._update(delta)
-    item.hand_update()
 }
 
 draw_bg_grid :: proc() {

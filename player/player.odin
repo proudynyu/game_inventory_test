@@ -62,14 +62,10 @@ _ready :: proc() {
         height = 100
     }
     player.inventory_open = false
-
-    create_inventory()
 }
 
 _update :: proc(delta: f32) {
     rl.DrawRectangleRec(player.body, rl.RED)
-
     player_keys()
-    show_inventory()
     move(delta)
 }
