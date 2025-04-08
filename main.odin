@@ -3,26 +3,15 @@ package main
 import "core:fmt"
 import "core:log"
 import "core:os"
-
-//import "core:bytes"
 import rl "vendor:raylib"
 import rlgl "vendor:raylib/rlgl"
 
-//import "player"
 import "inventory"
 
 WIDTH :: 800
 HEIGHT :: 600
 TITLE: cstring = "Game Inventory"
 SPEED :: 100
-
-//_ready :: proc() {
-//    player._ready()
-//}
-//
-//_update :: proc(delta: f32) {
-//    player._update(delta)
-//}
 
 draw_bg_grid :: proc() {
    rlgl.PushMatrix();
@@ -32,15 +21,15 @@ draw_bg_grid :: proc() {
    rlgl.PopMatrix();
 }
 
-item_1 := inventory.Item{
-    amount = 1,
-    id = 1
-}
-
-item_2 := inventory.Item{
-    amount = 1,
-    id = 3
-}
+// item_1 := inventory.Item{
+//     amount = 1,
+//     id = 1
+// }
+//
+// item_2 := inventory.Item{
+//     amount = 1,
+//     id = 3
+// }
 
 main :: proc() {
     // headless inventory test

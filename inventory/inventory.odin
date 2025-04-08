@@ -1,5 +1,6 @@
 package inventory
 
+import rl "vendor:raylib"
 import "core:fmt"
 
 MAX_CELLS :: 20
@@ -9,13 +10,18 @@ Cell :: struct { item: ^Item }
 
 Inventory :: struct {
     cells: []Cell,
-    hand: Cell
+    hand: Cell,
+    is_open: bool,
+    position: rl.Rectangle
 }
 
-new_inventory :: proc() -> Inventory {
-    cells := make([]Cell, MAX_CELLS)
-    hand: Cell = { item = nil }
-    return Inventory{ cells, hand }
+new_inventory :: proc(position: rl.Rectangle) -> Inventory {
+    return Inventory{ 
+        cells = make([]Cell, MAX_CELLS),
+        hand = { item = nil }, 
+        is_open = false,
+        position = position
+    }
 }
 
 hand_get_item :: proc(hand: ^Cell, item: ^Item) -> ^Item {
