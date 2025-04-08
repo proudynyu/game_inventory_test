@@ -27,30 +27,40 @@ import "inventory"
 //    rlgl.PopMatrix();
 //}
 
+item_1 := inventory.Item{
+    amount = 1,
+    id = 1
+}
+
+item_2 := inventory.Item{
+    amount = 1,
+    id = 3
+}
+
 main :: proc() {
     current_inventory := inventory.new_inventory()
+    inventory.hand_get_item(&current_inventory.hand, &item_1)
 
-    hand: inventory.Cell = {
-        item_id = 0,
-        quantity = 0
-    }
-
-    hand.quantity = 1
-    hand.item_id = 1
-
-    has_added := inventory.add_item(&current_inventory, 0, &hand)
+    fmt.println(current_inventory.hand.item)
+    has_added := inventory.add_item(&current_inventory, 0)
     if !has_added {
         log.fatal("Something went wrong trying to add the item")
     }
 
-    hand.quantity = 2
-    hand.item_id = 1
-    has_added = inventory.add_item(&current_inventory, 0, &hand)
+    inventory.hand_get_item(&current_inventory.hand, &item_1)
+    has_added = inventory.add_item(&current_inventory, 0)
+    if !has_added {
+        log.fatal("Something went wrong trying to add the item")
+    }
+
+    inventory.hand_get_item(&current_inventory.hand, &item_2)
+    has_added = inventory.add_item(&current_inventory, 0)
     if !has_added {
         log.fatal("Something went wrong trying to add the item")
     }
 
     inventory.draw_inventory(&current_inventory)
+
     //using setup
     //rl.InitWindow(WIDTH, HEIGHT, TITLE)
     //defer rl.CloseWindow()
